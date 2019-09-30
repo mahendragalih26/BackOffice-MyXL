@@ -165,8 +165,22 @@ class PackageModal extends Component {
                     Description
                   </Form.Label>
                   <Col sm={9}>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Group>
                       <Form.Control as="textarea" name="description" rows="3" />
+                    </Form.Group>
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formHorizontalPassword">
+                  <Form.Label column sm={3}>
+                    Term Condition
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Group>
+                      <Form.Control
+                        as="textarea"
+                        name="termsCondition"
+                        rows="3"
+                      />
                     </Form.Group>
                   </Col>
                 </Form.Group>
@@ -176,13 +190,21 @@ class PackageModal extends Component {
                   </Form.Label>
                   <Col sm={7}>
                     <InputGroup style={{ marginBottom: "20px" }}>
-                      <Form.Control
+                      {/* <Form.Control
                         type="text"
                         name="package"
                         placeholder="Kuota Internet / Pulsa"
                         aria-describedby="inputGroupPrepend"
                         required
-                      />
+                      /> */}
+
+                      <Form.Control as="select" name="package">
+                        <option selected disabled>
+                          Pilih Package Item
+                        </option>
+                        <option>aaa</option>
+                        <option>aaa</option>
+                      </Form.Control>
 
                       <Form.Control.Feedback type="invalid">
                         Please add new data.
@@ -219,8 +241,14 @@ class PackageModal extends Component {
                     Category
                   </Form.Label>
                   <Col sm={9}>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="text" name="category" rows="3" />
+                    <Form.Group>
+                      <Form.Control as="select" name="category">
+                        <option selected disabled>
+                          Pilih category
+                        </option>
+                        <option>aaa</option>
+                        <option>aaa</option>
+                      </Form.Control>
                     </Form.Group>
                   </Col>
                 </Form.Group>
@@ -229,8 +257,14 @@ class PackageModal extends Component {
                     Sub-Category
                   </Form.Label>
                   <Col sm={9}>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="text" name="subcategory" rows="3" />
+                    <Form.Group>
+                      <Form.Control as="select" name="subcategory">
+                        <option selected disabled>
+                          Pilih sub category
+                        </option>
+                        <option>aaa</option>
+                        <option>aaa</option>
+                      </Form.Control>
                     </Form.Group>
                   </Col>
                 </Form.Group>

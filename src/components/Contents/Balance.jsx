@@ -12,10 +12,11 @@ import {
 
 import BalanceAdd from "../Modals/addBalance.jsx";
 
-const BalanceList = props => {
+const BalanceList = ({ userData }) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <Fragment>
+      {console.log("ini props = ", { userData })}
       <Container style={{ marginTop: "30px" }}>
         <h2>Dashboard Balance</h2>
         <div>
@@ -60,64 +61,53 @@ const BalanceList = props => {
             </Form.Group>
           </Form>
         </div>
-        <Table responsive style={{ width: "70%" }}>
+        <Table responsive>
           <thead>
             <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>Number</th>
+              <th>Name</th>
+              <th>Balance</th>
+              <th>Email</th>
+              <th>Expired Date</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>
-                <Button
-                  variant="warning"
-                  onClick={() => setModalShow(true)}
-                  style={{ color: "white" }}
-                >
-                  <i className="fa fa-pencil" />
-                  &nbsp; Edit
-                </Button>
-                &nbsp;
-                <Button variant="danger" onClick={() => setModalShow(true)}>
-                  <i className="fa fa-trash" />
-                  &nbsp; Delete
-                </Button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>
-                <Button
-                  variant="warning"
-                  onClick={() => setModalShow(true)}
-                  style={{ color: "white" }}
-                >
-                  <i className="fa fa-pencil" />
-                  &nbsp; Edit
-                </Button>
-                &nbsp;
-                <Button variant="danger" onClick={() => setModalShow(true)}>
-                  <i className="fa fa-trash" />
-                  &nbsp; Delete
-                </Button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            {userData.length > 0 ? (
+              <Fragment>
+                {userData.map(item => (
+                  <tr>
+                    <td>{item.number}</td>
+                    <td>{item.name}</td>
+                    <td>
+                      {item.balance
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                    </td>
+                    <td>{item.email}</td>
+                    <td>{item.expirationDate}</td>
+                    <td>
+                      <Button
+                        variant="primary"
+                        onClick={() => setModalShow(true)}
+                        style={{ color: "white" }}
+                      >
+                        <i className="fa fa-pencil" />
+                        &nbsp; Edit
+                      </Button>
+                      &nbsp;
+                      <Button
+                        variant="danger"
+                        onClick={() => setModalShow(true)}
+                      >
+                        <i className="fa fa-trash" />
+                        &nbsp; Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </Fragment>
+            ) : null}
           </tbody>
         </Table>
       </Container>

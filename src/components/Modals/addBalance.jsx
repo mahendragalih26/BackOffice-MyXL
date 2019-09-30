@@ -78,6 +78,7 @@ class BalanceModal extends Component {
 
   render() {
     console.log("statenya = ", this.state.loadMore);
+    console.log("statenya = ", this.props);
     return (
       <Fragment>
         <Modal

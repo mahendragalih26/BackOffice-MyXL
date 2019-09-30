@@ -19,12 +19,12 @@ const PackageList = props => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
+              <th>Id Package</th>
               <th>Nama Package</th>
               <th>Valid Until</th>
               <th>Price</th>
               <th>description</th>
-              <th>Package</th>
+              <th>term Condition</th>
               <th>Category</th>
               <th>Sub-Category</th>
             </tr>
