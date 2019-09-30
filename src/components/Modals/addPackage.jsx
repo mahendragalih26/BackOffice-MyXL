@@ -58,7 +58,14 @@ class PackageModal extends Component {
   handleLoadMore = () => {
     // this.state.loadMore.push("aa");
     let tmp = this.state.loadMore;
-    tmp.push("aa");
+    tmp.push("dummyvar");
+    this.setState({ loadMore: tmp });
+  };
+
+  deleteLoadMore = () => {
+    // this.state.loadMore.push("aa");
+    let tmp = this.state.loadMore;
+    tmp.pop();
     this.setState({ loadMore: tmp });
   };
 
@@ -67,21 +74,11 @@ class PackageModal extends Component {
       <InputGroup style={{ marginBottom: "20px" }}>
         <Form.Control
           type="text"
-          placeholder="Username"
+          placeholder="new Package.."
           aria-describedby="inputGroupPrepend"
           required
         />
-        <InputGroup.Prepend>
-          <Button
-            {...this.props}
-            id="inputGroupPrepend"
-            onClick={() => {
-              this.handleLoadMore();
-            }}
-          >
-            <i className="fa fa-plus" />
-          </Button>
-        </InputGroup.Prepend>
+        <InputGroup.Prepend></InputGroup.Prepend>
         <Form.Control.Feedback type="invalid">
           Please add new data.
         </Form.Control.Feedback>
@@ -135,49 +132,58 @@ class PackageModal extends Component {
             <Container>
               <Form>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
+                  <Form.Label column sm={3}>
                     Nama Package
                   </Form.Label>
-                  <Col sm={10}>
+                  <Col sm={9}>
                     <Form.Control type="text" name="name" />
                   </Col>
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formHorizontalPassword">
-                  <Form.Label column sm={2}>
-                    Category
+                  <Form.Label column sm={3}>
+                    Valid Until
                   </Form.Label>
-                  <Col sm={10}>
+                  <Col sm={9}>
                     <Form.Control
                       type="text"
-                      name=""
-                      placeholder="internet, nelpon"
+                      name="valid"
+                      placeholder="per menit"
                     />
                   </Col>
                 </Form.Group>
-                <Form.Group as={Row} controlId="">
-                  <Form.Label column sm={2}>
-                    Username
+                <Form.Group as={Row} controlId="formHorizontalPassword">
+                  <Form.Label column sm={3}>
+                    Price
                   </Form.Label>
-                  <Col sm={10}>
+                  <Col sm={9}>
+                    <Form.Control type="text" name="price" />
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formHorizontalPassword">
+                  <Form.Label column sm={3}>
+                    Description
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Control as="textarea" name="description" rows="3" />
+                    </Form.Group>
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="">
+                  <Form.Label column sm={3}>
+                    Package Item
+                  </Form.Label>
+                  <Col sm={7}>
                     <InputGroup style={{ marginBottom: "20px" }}>
                       <Form.Control
                         type="text"
-                        placeholder="Username"
+                        name="package"
+                        placeholder="Kuota Internet / Pulsa"
                         aria-describedby="inputGroupPrepend"
                         required
                       />
-                      <InputGroup.Prepend>
-                        <Button
-                          {...this.props}
-                          id="inputGroupPrepend"
-                          onClick={() => {
-                            this.handleLoadMore();
-                          }}
-                        >
-                          <i className="fa fa-plus" />
-                        </Button>
-                      </InputGroup.Prepend>
+
                       <Form.Control.Feedback type="invalid">
                         Please add new data.
                       </Form.Control.Feedback>
@@ -185,10 +191,52 @@ class PackageModal extends Component {
 
                     {this.state.loadMore.map(() => this.handleComponent())}
                   </Col>
+                  <Col sm={2}>
+                    <Button
+                      {...this.props}
+                      id="inputGroupPrepend"
+                      onClick={() => {
+                        this.handleLoadMore();
+                      }}
+                    >
+                      <i className="fa fa-plus" />
+                    </Button>
+                    &nbsp;
+                    {this.state.loadMore.length > 0 ? (
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          this.deleteLoadMore();
+                        }}
+                      >
+                        <i className="fa fa-minus" />
+                      </Button>
+                    ) : null}
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formHorizontalPassword">
+                  <Form.Label column sm={3}>
+                    Category
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Control as="text" name="category" rows="3" />
+                    </Form.Group>
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formHorizontalPassword">
+                  <Form.Label column sm={3}>
+                    Sub-Category
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Control as="text" name="subcategory" rows="3" />
+                    </Form.Group>
+                  </Col>
                 </Form.Group>
 
                 <Form.Group as={Row} className="pull-right">
-                  <Col>
+                  <Col sm={12}>
                     <Button type="submit" variant="success">
                       Submit New Package
                     </Button>
@@ -197,9 +245,6 @@ class PackageModal extends Component {
               </Form>
             </Container>
           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.props.onHide}>Close</Button>
-          </Modal.Footer>
         </Modal>
       </Fragment>
     );

@@ -7,7 +7,7 @@ const myFooter = () => {
       <Navbar
         expand="lg"
         variant="primary"
-        style={{ backgroundColor: "#73c6f0", color: "white" }}
+        style={{ backgroundColor: "#002CBA", color: "white" }}
         fixed="bottom"
       >
         <Navbar.Collapse className="justify-content-end">

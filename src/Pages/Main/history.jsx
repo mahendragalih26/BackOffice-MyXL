@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from "react";
 
 import Profile from "../../components/Cards/settings";
-import ContentPackage from "../../components/Contents/Package";
+import ContentHistory from "../../components/Contents/History";
 
-class myMain extends Component {
+class myHistory extends Component {
   state = {};
   render() {
     return (
       <Fragment>
         <Profile />
-        <ContentPackage />
+        <ContentHistory />
       </Fragment>
     );
   }
 }
 
-export default myMain;
+export default myHistory;

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Login from "./Pages/Auth/login.jsx";
 import Main from "./Pages/Main/dashboard.jsx";
+import MainBalance from "./Pages/Main/balance.jsx";
+import MainHistory from "./Pages/Main/history.jsx";
 
 function App() {
   return (
@@ -27,6 +29,28 @@ function App() {
             return (
               <Fragment>
                 <Main />
+              </Fragment>
+            );
+          }}
+        />
+        <Route
+          path="/balance"
+          exact
+          render={props => {
+            return (
+              <Fragment>
+                <MainBalance />
+              </Fragment>
+            );
+          }}
+        />
+        <Route
+          path="/history"
+          exact
+          render={props => {
+            return (
+              <Fragment>
+                <MainHistory />
               </Fragment>
             );
           }}

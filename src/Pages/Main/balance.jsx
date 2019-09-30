@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from "react";
 
 import Profile from "../../components/Cards/settings";
-import ContentPackage from "../../components/Contents/Package";
+import ContentBalance from "../../components/Contents/Balance";
 
-class myMain extends Component {
+class myBalance extends Component {
   state = {};
   render() {
     return (
       <Fragment>
         <Profile />
-        <ContentPackage />
+        <ContentBalance />
       </Fragment>
     );
   }
 }
 
-export default myMain;
+export default myBalance;

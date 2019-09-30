@@ -20,9 +20,13 @@ const PackageList = props => {
           <thead>
             <tr>
               <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>Nama Package</th>
+              <th>Valid Until</th>
+              <th>Price</th>
+              <th>description</th>
+              <th>Package</th>
+              <th>Category</th>
+              <th>Sub-Category</th>
             </tr>
           </thead>
           <tbody>
@@ -31,12 +35,20 @@ const PackageList = props => {
               <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
             </tr>
             <tr>
               <td>3</td>

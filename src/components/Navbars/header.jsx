@@ -10,6 +10,8 @@ import {
   Image
 } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
+
 const myHeader = () => {
   return (
     <Fragment>
@@ -18,7 +20,7 @@ const myHeader = () => {
         variant="danger"
         style={{ paddingLeft: "35px", paddingBottom: "10px" }}
       >
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/main">
           <Image
             style={{ maxHeight: "40px" }}
             src="https://d17e22l2uh4h4n.cloudfront.net/corpweb/pub-xlaxiata/2019-03/xl-logo.png"
@@ -26,34 +28,20 @@ const myHeader = () => {
         </Navbar.Brand>
         <Nav className="mr-auto" style={{ marginLeft: "30px" }}>
           <NavDropdown
-            title="pilihan 1"
+            title="Manage Package"
             id="collasible-nav-dropdown"
             style={{ marginRight: "20px" }}
           >
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown.Item href="/history">History</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
+            <NavDropdown.Item href="/main">Package Dashboard</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
-            title="pilihan 2"
+            title="Manage Balance"
             id="collasible-nav-dropdown"
             style={{ marginRight: "20px" }}
           >
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
+            <NavDropdown.Item href="/balance">Add Balance</NavDropdown.Item>
           </NavDropdown>
           <Nav.Link href="#features" style={{ marginRight: "20px" }}>
             Features
