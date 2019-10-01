@@ -21,13 +21,11 @@ class mySettings extends Component {
     super(props);
     this.state = {
       isPaneOpen: false,
-      isPaneOpenLeft: false
+      isPaneOpenLeft: false,
+      search: ""
     };
   }
 
-  componentDidMount() {
-    Modal.setAppElement(this.el);
-  }
   render() {
     return (
       <Fragment>

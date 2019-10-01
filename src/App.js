@@ -8,6 +8,7 @@ import Login from "./Pages/Auth/login.jsx";
 import Main from "./Pages/Main/dashboard.jsx";
 import MainBalance from "./Pages/Main/balance.jsx";
 import MainHistory from "./Pages/Main/history.jsx";
+import PackageItem from "./Pages/Main/package_item.jsx";
 
 function App() {
   return (
@@ -33,6 +34,17 @@ function App() {
               return (
                 <Fragment>
                   <Main />
+                </Fragment>
+              );
+            }}
+          />
+          <Route
+            path="/package-item"
+            exact
+            render={props => {
+              return (
+                <Fragment>
+                  <PackageItem />
                 </Fragment>
               );
             }}

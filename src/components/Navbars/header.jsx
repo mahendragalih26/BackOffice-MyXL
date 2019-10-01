@@ -10,9 +10,7 @@ import {
   Image
 } from "react-bootstrap";
 
-import { Link } from "react-router-dom";
-
-const myHeader = () => {
+const myHeader = props => {
   return (
     <Fragment>
       <Navbar
@@ -34,7 +32,10 @@ const myHeader = () => {
           >
             <NavDropdown.Item href="/history">History</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/main">Package Dashboard</NavDropdown.Item>
+            <NavDropdown.Item href="/main">Package</NavDropdown.Item>
+            <NavDropdown.Item href="/package-item">
+              Package Item
+            </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title="Manage Balance"
@@ -51,7 +52,12 @@ const myHeader = () => {
           </Nav.Link>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <FormControl
+            type="text"
+            name="search"
+            placeholder="Search"
+            className="mr-sm-2"
+          />
           <Button variant="outline-primary">Search</Button>
         </Form>
       </Navbar>
