@@ -1,11 +1,19 @@
 import React, { Fragment, useState } from "react";
-import { Table, Container, Button, ButtonToolbar } from "react-bootstrap";
+import {
+  Table,
+  Container,
+  Button,
+  ButtonToolbar,
+  Badge
+} from "react-bootstrap";
 import PackageAdd from "../Modals/addPackage.jsx";
 
 const PackageList = props => {
   const [modalShow, setModalShow] = useState(false);
+  let { myPackage } = props;
   return (
     <Fragment>
+      {console.log("data package = ", myPackage)}
       <Container style={{ marginTop: "30px" }}>
         <h2>Dashboard Package</h2>
         <div>
@@ -26,35 +34,49 @@ const PackageList = props => {
               <th>description</th>
               <th>term Condition</th>
               <th>Category</th>
-              <th>Sub-Category</th>
+              <th>SubCategory</th>
+              <th>Package Item</th>
+              <th>Category Name</th>
+              <th>Sub Name</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            {myPackage.length > 0 ? (
+              <Fragment>
+                {myPackage.map(item => (
+                  <tr>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.validUntil}</td>
+                    <td>{item.price}</td>
+                    <td>{item.description}</td>
+                    <td>{item.termsCondition}</td>
+                    <td>{item.category}</td>
+                    <td>{item.subcategory}</td>
+                    <td>
+                      <Fragment>
+                        {item.packageItems.map(id => (
+                          <h4>
+                            <Fragment>
+                              {// id.filter(i => i.id.include("TEL"))
+                              id.type === "telpon" ? (
+                                <Badge variant="primary">{id.id}</Badge>
+                              ) : id.type === "sms" ? (
+                                <Badge variant="success">{id.id}</Badge>
+                              ) : (
+                                <Badge variant="warning">{id.id}</Badge>
+                              )}
+                            </Fragment>
+                          </h4>
+                        ))}
+                      </Fragment>
+                    </td>
+                    <td>{item.categoryName}</td>
+                    <td>{item.subcategoryName}</td>
+                  </tr>
+                ))}
+              </Fragment>
+            ) : null}
           </tbody>
         </Table>
       </Container>

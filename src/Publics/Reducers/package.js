@@ -1,35 +1,35 @@
 const initialState = {
-  packagesItemList: [],
+  packagesList: [],
   isLoading: false,
   isFulfilled: false,
   isRejected: false
 };
 
-const packageItem = (state = initialState, action) => {
+const myPackage = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_PACKAGE_ITEMS_PENDING":
+    case "GET_PACKAGES_PENDING":
       return {
         ...state,
         isLoading: true,
         isFulfilled: false,
         isRejected: false
       };
-    case "GET_PACKAGE_ITEMS_REJECTED":
+    case "GET_PACKAGES_REJECTED":
       return {
         ...state,
         isLoading: false,
         isRejected: true
       };
-    case "GET_PACKAGE_ITEMS_FULFILLED":
+    case "GET_PACKAGES_FULFILLED":
       return {
         ...state,
         isLoading: false,
         isFulfilled: true,
-        packagesItemList: action.payload.data.response
+        packagesList: action.payload.data.response
       };
     default:
       return state;
   }
 };
 
-export default packageItem;
+export default myPackage;

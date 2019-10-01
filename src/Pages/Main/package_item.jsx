@@ -27,7 +27,7 @@ class myMain extends Component {
   componentDidMount = async () => {
     await this.props.dispatch(getPackageItem()).then(() => {
       this.setState({
-        myPackage: this.props.myItem.packagesList
+        myPackage: this.props.myItem.packagesItemList
       });
     });
   };
