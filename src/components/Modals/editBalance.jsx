@@ -9,7 +9,7 @@ import {
   InputGroup
 } from "react-bootstrap";
 
-class BalanceModal extends Component {
+class editModalBalance extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,7 +88,7 @@ class BalanceModal extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Add Balance form
+              Edit Balance form
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -96,28 +96,24 @@ class BalanceModal extends Component {
               <Form>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                   <Form.Label column sm={2}>
-                    Nama User
+                    No. Telp
                   </Form.Label>
                   <Col sm={10}>
-                    <Form.Control type="text" name="name" />
+                    <Form.Control type="text" name="number" />
                   </Col>
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formHorizontalPassword">
                   <Form.Label column sm={2}>
-                    Phone Number
+                    Name User
                   </Form.Label>
                   <Col sm={10}>
-                    <Form.Control
-                      type="text"
-                      name=""
-                      placeholder="internet, nelpon"
-                    />
+                    <Form.Control type="text" name="name" />
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="">
                   <Form.Label column sm={2}>
-                    Add Balance
+                    Balance
                   </Form.Label>
                   <Col sm={10}>
                     <InputGroup style={{ marginBottom: "20px" }}>
@@ -132,19 +128,14 @@ class BalanceModal extends Component {
                         Please add new data.
                       </Form.Control.Feedback>
                     </InputGroup>
-
-                    <InputGroup style={{ marginBottom: "20px" }}>
-                      <Form.Control
-                        type="text"
-                        placeholder="Username"
-                        aria-describedby="inputGroupPrepend"
-                        required
-                      />
-
-                      <Form.Control.Feedback type="invalid">
-                        Please add new data.
-                      </Form.Control.Feedback>
-                    </InputGroup>
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formHorizontalPassword">
+                  <Form.Label column sm={2}>
+                    Name User
+                  </Form.Label>
+                  <Col sm={10}>
+                    <Form.Control type="text" name="name" />
                   </Col>
                 </Form.Group>
 
@@ -162,4 +153,4 @@ class BalanceModal extends Component {
   }
 }
 
-export default BalanceModal;
+export default editModalBalance;

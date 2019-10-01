@@ -11,9 +11,12 @@ import {
 } from "react-bootstrap";
 
 import BalanceAdd from "../Modals/addBalance.jsx";
+import BalanceEdit from "../Modals/editBalance";
 
 const BalanceList = ({ userData }) => {
   const [modalShow, setModalShow] = useState(false);
+  const [modalEditShow, setModalEditShow] = useState(false);
+  const [modalDeleteShow, setModalDeleteShow] = useState(false);
   return (
     <Fragment>
       {console.log("ini props = ", { userData })}
@@ -89,16 +92,20 @@ const BalanceList = ({ userData }) => {
                     <td>
                       <Button
                         variant="primary"
-                        onClick={() => setModalShow(true)}
+                        onClick={() => setModalEditShow(true)}
                         style={{ color: "white" }}
                       >
                         <i className="fa fa-pencil" />
                         &nbsp; Edit
                       </Button>
+                      <BalanceEdit
+                        show={modalEditShow}
+                        onHide={() => setModalEditShow(false)}
+                      />
                       &nbsp;
                       <Button
                         variant="danger"
-                        onClick={() => setModalShow(true)}
+                        onClick={() => setModalDeleteShow(true)}
                       >
                         <i className="fa fa-trash" />
                         &nbsp; Delete
