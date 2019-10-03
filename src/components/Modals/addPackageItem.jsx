@@ -9,6 +9,8 @@ import {
   InputGroup
 } from "react-bootstrap";
 
+import { addPackageItem } from "../../Publics/Actions/packageItem";
+
 class PackageModal extends Component {
   constructor(props) {
     super(props);
@@ -93,26 +95,26 @@ class PackageModal extends Component {
     // }
   };
 
-  //   handleAdd = async e => {
-  //     e.preventDefault();
-  //     await this.props
-  //       .dispatch(register(this.state.formData))
-  //       .then(() => {
-  //         // alert("Login Berhasil Yepiee");
-  //         SweetAlert.fire({
-  //           title: "Yeayy!",
-  //           text: `Data has been updated`,
-  //           type: "success",
-  //           confirmButtonText: "OK",
-  //           confirmButtonColor: "#E28935"
-  //         }).then(() => {
-  //           window.location.href = "/";
-  //         });
-  //       })
-  //       .catch(err => {
-  //         alert(err);
-  //       });
-  //   };
+  handleAdd = async e => {
+    e.preventDefault();
+    await this.props
+      .dispatch(register(this.state.formData))
+      .then(() => {
+        // alert("Login Berhasil Yepiee");
+        SweetAlert.fire({
+          title: "Yeayy!",
+          text: `Data has been updated`,
+          type: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#E28935"
+        }).then(() => {
+          window.location.href = "/";
+        });
+      })
+      .catch(err => {
+        alert(err);
+      });
+  };
 
   render() {
     console.log("statenya = ", this.state.loadMore);

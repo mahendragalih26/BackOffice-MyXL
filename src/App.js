@@ -4,11 +4,13 @@ import { Provider } from "react-redux";
 
 import store from "./Publics/store";
 
+import TryChart from "./components/Contents/Chart.jsx";
 import Login from "./Pages/Auth/login.jsx";
 import Main from "./Pages/Main/dashboard.jsx";
 import MainBalance from "./Pages/Main/balance.jsx";
 import MainHistory from "./Pages/Main/history.jsx";
 import PackageItem from "./Pages/Main/package_item.jsx";
+import Category from "./Pages/Main/category.jsx";
 
 function App() {
   return (
@@ -28,7 +30,7 @@ function App() {
             }}
           />
           <Route
-            path="/main"
+            path="/package"
             exact
             render={props => {
               return (
@@ -61,12 +63,34 @@ function App() {
             }}
           />
           <Route
-            path="/history"
+            path="/main"
             exact
             render={props => {
               return (
                 <Fragment>
                   <MainHistory />
+                </Fragment>
+              );
+            }}
+          />
+          <Route
+            path="/category"
+            exact
+            render={props => {
+              return (
+                <Fragment>
+                  <Category />
+                </Fragment>
+              );
+            }}
+          />
+          <Route
+            path="/try"
+            exact
+            render={props => {
+              return (
+                <Fragment>
+                  <TryChart />
                 </Fragment>
               );
             }}

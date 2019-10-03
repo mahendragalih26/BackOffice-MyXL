@@ -26,13 +26,15 @@ const myHeader = props => {
         </Navbar.Brand>
         <Nav className="mr-auto" style={{ marginLeft: "30px" }}>
           <NavDropdown
-            title="Manage Package"
+            title="Package / History"
             id="collasible-nav-dropdown"
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: "20px", fontWeight: "bold" }}
           >
-            <NavDropdown.Item href="/history">History</NavDropdown.Item>
+            <NavDropdown.Item href="/main">
+              Transaction with History
+            </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/main">Package</NavDropdown.Item>
+            <NavDropdown.Item href="/package">Package</NavDropdown.Item>
             <NavDropdown.Item href="/package-item">
               Package Item
             </NavDropdown.Item>
@@ -40,9 +42,17 @@ const myHeader = props => {
           <NavDropdown
             title="Manage Balance"
             id="collasible-nav-dropdown"
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: "20px", fontWeight: "bold" }}
           >
             <NavDropdown.Item href="/balance">Add Balance</NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown
+            title="Category"
+            id="collasible-nav-dropdown"
+            style={{ marginRight: "20px", fontWeight: "bold" }}
+          >
+            <NavDropdown.Item href="/category">Main Category</NavDropdown.Item>
+            <NavDropdown.Item href="/category">Sub Category</NavDropdown.Item>
           </NavDropdown>
           <Nav.Link href="#features" style={{ marginRight: "20px" }}>
             Features

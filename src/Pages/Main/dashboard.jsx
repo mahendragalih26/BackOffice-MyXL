@@ -5,12 +5,16 @@ import Profile from "../../components/Cards/settings";
 import ContentPackage from "../../components/Contents/Package";
 
 import { getPackage } from "../../Publics/Actions/package";
+import { getPackageItem } from "../../Publics/Actions/packageItem";
+import { getCategory } from "../../Publics/Actions/category";
 
 class myPackage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       myPackage: [],
+      myPackageItem: [],
+      myCategory: [],
       search: ""
     };
   }
@@ -25,17 +29,25 @@ class myPackage extends Component {
   // };
 
   componentDidMount = async () => {
-    await this.props.dispatch(getPackage()).then(() => {
+    await this.props.dispatch(getCategory());
+    await this.props.dispatch(getPackage());
+    await this.props.dispatch(getPackageItem()).then(() => {
       this.setState({
-        myPackage: this.props.myPackage.packagesList
+        myPackage: this.props.myPackage.packagesList,
+        myPackageItem: this.props.myPackageItem.packagesItemList,
+        myCategory: this.props.myCategory.categoryList
       });
     });
   };
   render() {
     return (
-      <Fragment>
+      <Fragment style={{ backgroundColor: "red" }}>
         <Profile />
-        <ContentPackage myPackage={this.state.myPackage} />
+        <ContentPackage
+          myPackage={this.state.myPackage}
+          myPackageItem={this.state.myPackageItem}
+          myCategory={this.state.myCategory}
+        />
       </Fragment>
     );
   }
@@ -43,7 +55,9 @@ class myPackage extends Component {
 
 const mapStateToProps = state => {
   return {
-    myPackage: state.myPackage
+    myPackage: state.myPackage,
+    myPackageItem: state.packageItem,
+    myCategory: state.myCategory
   };
 };
 

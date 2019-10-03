@@ -8,73 +8,39 @@ import {
   Col,
   InputGroup
 } from "react-bootstrap";
+import { connect } from "react-redux";
+
+import { addUserBalance } from "../../Publics/Actions/balance";
 
 class BalanceModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formPackage: {
-        name: "",
-        email: "",
-        password: ""
-      },
+      number: "",
+      amount: "",
       loadMore: []
     };
   }
 
-  handleChange = e => {
-    let newFormData = { ...this.state.formData };
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
-    newFormData[name] = value;
-    this.setState(
-      {
-        formData: newFormData
-      },
-      () => {
-        console.log(this.state.formData);
-      }
-    );
+  handleChange = event => {
+    this.setState({ [event.target.name]: [event.target.value] }, () => {
+      console.log(this.state.number);
+      console.log(this.state.amount);
+    });
   };
 
-  //   inputStockHandler = (event) => {
-  //     const tmp = [];
-  //     this.state.itemstock.map(i => {
-  //         if(i.branch == event.target.id){// eslint-disable-line
-  //             tmp.push({
-  //                 ...i,
-  //                 [event.target.name]:[event.target.value][0]
-  //             })
-  //         } else {
-  //             tmp.push(i)
-  //         }
-  //         this.setState({itemstock:tmp})
+  componentDidMount = () => {
+    this.setState({
+      number: this.props.number
+    });
+  };
 
-  //         return null;
-  //     })
-  // }
-
-  //   handleAdd = async e => {
-  //     e.preventDefault();
-  //     await this.props
-  //       .dispatch(register(this.state.formData))
-  //       .then(() => {
-  //         // alert("Login Berhasil Yepiee");
-  //         SweetAlert.fire({
-  //           title: "Yeayy!",
-  //           text: `Data has been updated`,
-  //           type: "success",
-  //           confirmButtonText: "OK",
-  //           confirmButtonColor: "#E28935"
-  //         }).then(() => {
-  //           window.location.href = "/";
-  //         });
-  //       })
-  //       .catch(err => {
-  //         alert(err);
-  //       });
-  //   };
+  handleAdd = async e => {
+    e.preventDefault();
+    await this.props.dispatch(
+      addUserBalance(this.state.number, this.state.amount)
+    );
+  };
 
   render() {
     console.log("statenya = ", this.state.loadMore);
@@ -93,28 +59,22 @@ class BalanceModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <Container>
-              <Form>
+              <Form onSubmit={this.handleAdd}>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                   <Form.Label column sm={2}>
-                    Nama User
-                  </Form.Label>
-                  <Col sm={10}>
-                    <Form.Control type="text" name="name" />
-                  </Col>
-                </Form.Group>
-
-                <Form.Group as={Row} controlId="formHorizontalPassword">
-                  <Form.Label column sm={2}>
-                    Phone Number
+                    User Number
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
                       type="text"
-                      name=""
-                      placeholder="internet, nelpon"
-                    />
+                      name="number"
+                      onChange={e => {
+                        this.handleChange(e);
+                      }}
+                    ></Form.Control>
                   </Col>
                 </Form.Group>
+
                 <Form.Group as={Row} controlId="">
                   <Form.Label column sm={2}>
                     Add Balance
@@ -123,21 +83,11 @@ class BalanceModal extends Component {
                     <InputGroup style={{ marginBottom: "20px" }}>
                       <Form.Control
                         type="text"
-                        placeholder="Username"
                         aria-describedby="inputGroupPrepend"
-                        required
-                      />
-
-                      <Form.Control.Feedback type="invalid">
-                        Please add new data.
-                      </Form.Control.Feedback>
-                    </InputGroup>
-
-                    <InputGroup style={{ marginBottom: "20px" }}>
-                      <Form.Control
-                        type="text"
-                        placeholder="Username"
-                        aria-describedby="inputGroupPrepend"
+                        name="amount"
+                        onChange={e => {
+                          this.handleChange(e);
+                        }}
                         required
                       />
 
@@ -162,4 +112,10 @@ class BalanceModal extends Component {
   }
 }
 
-export default BalanceModal;
+const mapStateToProps = state => {
+  return {
+    myBalance: state.addBalance
+  };
+};
+
+export default connect(mapStateToProps)(BalanceModal);

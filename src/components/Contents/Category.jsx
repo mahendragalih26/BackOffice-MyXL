@@ -7,25 +7,26 @@ import {
   Form,
   Col,
   Row,
-  InputGroup
+  InputGroup,
+  Badge
 } from "react-bootstrap";
 
 import BalanceAdd from "../Modals/addBalance.jsx";
 import BalanceEdit from "../Modals/editBalance";
 
-const BalanceList = ({ userData }) => {
+const BalanceList = props => {
   const [modalShow, setModalShow] = useState(false);
   const [modalEditShow, setModalEditShow] = useState(false);
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
   return (
     <Fragment>
-      {console.log("ini props = ", { userData })}
+      {console.log("ini props = ", props.categoryData)}
       <Container style={{ marginTop: "30px" }}>
-        <h2>Dashboard Balance</h2>
+        <h2>Dashboard Category</h2>
         <div>
           <Form>
             <Form.Group as={Row} controlId="">
-              {/* <Col sm={4} style={{ paddingTop: "12px" }}>
+              <Col sm={4} style={{ paddingTop: "12px" }}>
                 <InputGroup>
                   <Form.Control
                     type="text"
@@ -47,66 +48,67 @@ const BalanceList = ({ userData }) => {
                   />
                 </InputGroup>
               </Col>
-              <Col sm={3}> */}
-              <ButtonToolbar className="pull-right" style={{ margin: "10px" }}>
-                <Button variant="success" onClick={() => setModalShow(true)}>
-                  Add New Balance
-                </Button>
-                <BalanceAdd
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
-              </ButtonToolbar>
-              {/* </Col> */}
+              <Col sm={3}>
+                <ButtonToolbar
+                  className="pull-right"
+                  style={{ margin: "10px" }}
+                >
+                  <Button variant="success" onClick={() => setModalShow(true)}>
+                    Add New Balance
+                  </Button>
+                  <BalanceAdd
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+                </ButtonToolbar>
+              </Col>
             </Form.Group>
           </Form>
         </div>
         <Table responsive>
           <thead>
             <tr>
-              <th>Number</th>
-              <th>Name</th>
-              <th>Balance</th>
-              <th>Email</th>
-              <th>Expired Date</th>
+              <th>Category ID</th>
+              <th>Category Name</th>
+              <th>Sub Category</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {userData.length > 0 ? (
+            {props.categoryData.length > 0 ? (
               <Fragment>
-                {userData.map(item => (
-                  <tr key={item._id}>
-                    <td>{item.number}</td>
+                {props.categoryData.map(item => (
+                  <tr>
+                    <td>{item.id}</td>
                     <td>{item.name}</td>
                     <td>
-                      Rp.
-                      <b>
-                        {item.balance
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                      </b>
+                      <Fragment>
+                        {item.subcategories.map(id => (
+                          <h5>
+                            <Badge variant="success" style={{ color: "white" }}>
+                              {id.name}
+                            </Badge>
+                          </h5>
+                        ))}
+                      </Fragment>
                     </td>
-                    <td>{item.email}</td>
-                    <td>{item.expirationDate}</td>
                     <td>
                       <Button
                         variant="primary"
-                        onClick={() => setModalEditShow(true)}
+                        // onClick={() => setModalEditShow(true)}
                         style={{ color: "white" }}
                       >
-                        <i className="fa fa-plus" />
-                        &nbsp; Add Balance
+                        <i className="fa fa-pencil" />
+                        &nbsp; Edit
                       </Button>
-                      <BalanceEdit
-                        number={item.number}
+                      {/* <BalanceEdit
                         show={modalEditShow}
                         onHide={() => setModalEditShow(false)}
-                      />
+                      /> */}
                       &nbsp;
                       <Button
                         variant="danger"
-                        onClick={() => setModalDeleteShow(true)}
+                        // onClick={() => setModalDeleteShow(true)}
                       >
                         <i className="fa fa-trash" />
                         &nbsp; Delete
