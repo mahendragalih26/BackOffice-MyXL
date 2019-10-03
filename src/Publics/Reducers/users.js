@@ -1,6 +1,7 @@
 const initialState = {
   usersList: [],
   userId: [],
+  UserLogin: [],
   isLoading: false,
   isFulfilled: false,
   isRejected: false
@@ -47,6 +48,26 @@ const users = (state = initialState, action) => {
         isLoading: false,
         isFulfilled: true,
         usersId: action.payload.data.response
+      };
+    case "USER_LOGIN_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isFulfilled: false,
+        isRejected: false
+      };
+    case "USER_LOGIN_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isRejected: true
+      };
+    case "USER_LOGIN_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isFulfilled: true,
+        UserLogin: action.payload.data.response
       };
     default:
       return state;

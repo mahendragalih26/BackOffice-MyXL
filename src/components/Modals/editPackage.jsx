@@ -6,8 +6,13 @@ import {
   Button,
   Row,
   Col,
-  InputGroup
+  InputGroup,
+  Spinner
 } from "react-bootstrap";
+import { connect } from "react-redux";
+
+import { addPackage } from "../../Publics/Actions/package";
+import { getSubCategory } from "../../Publics/Actions/category";
 
 class PackageModal extends Component {
   constructor(props) {
@@ -15,46 +20,51 @@ class PackageModal extends Component {
     this.state = {
       formPackage: {
         name: "",
-        email: "",
-        password: ""
+        validUntil: "",
+        price: "",
+        description: "",
+        termsCondition: "",
+        packageItems: [],
+        category: "",
+        subcategory: ""
       },
-      loadMore: []
+      loadMore: [],
+      subCategory: []
     };
   }
 
   handleChange = e => {
-    let newFormData = { ...this.state.formData };
+    let newFormData = { ...this.state.formPackage };
     const target = e.target;
     const name = target.name;
     const value = target.value;
     newFormData[name] = value;
     this.setState(
       {
-        formData: newFormData
+        formPackage: newFormData
       },
       () => {
-        console.log(this.state.formData);
+        console.log(this.state.formPackage);
       }
     );
   };
 
-  //   inputStockHandler = (event) => {
-  //     const tmp = [];
-  //     this.state.itemstock.map(i => {
-  //         if(i.branch == event.target.id){// eslint-disable-line
-  //             tmp.push({
-  //                 ...i,
-  //                 [event.target.name]:[event.target.value][0]
-  //             })
-  //         } else {
-  //             tmp.push(i)
-  //         }
-  //         this.setState({itemstock:tmp})
+  handleArrayPush = e => {
+    const tmp = this.state.formPackage.packageItems;
+    this.props.myPackageItem.map(i => {
+      if (i.id == e.target.value) {
+        tmp.push(i.id);
+        this.setState({
+          formPackage: { ...this.state.formPackage, packageItems: tmp }
+        });
+      }
+      console.log("ini dataku", this.state.formPackage);
 
-  //         return null;
-  //     })
-  // }
+      return null;
+    });
+  };
 
+  //For DropBox
   handleLoadMore = () => {
     // this.state.loadMore.push("aa");
     let tmp = this.state.loadMore;
@@ -73,12 +83,24 @@ class PackageModal extends Component {
     return (
       <InputGroup style={{ marginBottom: "20px" }}>
         <Form.Control
-          type="text"
-          placeholder="new Package.."
-          aria-describedby="inputGroupPrepend"
-          required
-        />
-        <InputGroup.Prepend></InputGroup.Prepend>
+          as="select"
+          name="packageItems"
+          onClick={e => {
+            this.handleArrayPush(e);
+          }}
+        >
+          <option selected disabled>
+            Pilih Package Item
+          </option>
+          {this.props.myPackageItem.length > 0 ? (
+            <Fragment>
+              {this.props.myPackageItem.map(item => (
+                <option value={item.id}>{item.name}</option>
+              ))}
+            </Fragment>
+          ) : null}
+        </Form.Control>
+
         <Form.Control.Feedback type="invalid">
           Please add new data.
         </Form.Control.Feedback>
@@ -88,35 +110,36 @@ class PackageModal extends Component {
 
   componentDidUpdate = () => {
     this.handleComponent();
-    // if (0 < this.state.loadMore.length) {
-    //   console.log("did update");
-    // }
   };
 
-  //   handleAdd = async e => {
-  //     e.preventDefault();
-  //     await this.props
-  //       .dispatch(register(this.state.formData))
-  //       .then(() => {
-  //         // alert("Login Berhasil Yepiee");
-  //         SweetAlert.fire({
-  //           title: "Yeayy!",
-  //           text: `Data has been updated`,
-  //           type: "success",
-  //           confirmButtonText: "OK",
-  //           confirmButtonColor: "#E28935"
-  //         }).then(() => {
-  //           window.location.href = "/";
-  //         });
-  //       })
-  //       .catch(err => {
-  //         alert(err);
-  //       });
-  //   };
+  // handleAdd = async e => {
+  //   e.preventDefault();
+  //   await this.props.dispatch(addPackage(this.state.formPackage));
+  // };
+
+  handleSubCategory = async id => {
+    // console.log("subb categ = ", id);
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    await this.props.dispatch(addPackage(this.state.formPackage)).then(() => {
+      window.location.reload();
+    });
+  };
 
   render() {
-    console.log("statenya = ", this.state.loadMore);
-    return (
+    // console.log("statenya = ", this.state.loadMore);
+    // console.log("state pitem = ", this.props.myPackageItem);
+    // console.log("subCategory = ", this.props.mySubCategory.subCategoryList);
+    let mySubCategory = this.props.mySubCategory.subCategoryList;
+    console.log("awuwuw = ", this.props.isLoading);
+
+    return this.props.isLoading ? (
+      <Fragment>
+        <Spinner animation="grow" />
+      </Fragment>
+    ) : (
       <Fragment>
         <Modal
           {...this.props}
@@ -130,13 +153,19 @@ class PackageModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <Container>
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                   <Form.Label column sm={3}>
                     Nama Package
                   </Form.Label>
                   <Col sm={9}>
-                    <Form.Control type="text" name="name" />
+                    <Form.Control
+                      type="text"
+                      name="name"
+                      onChange={e => {
+                        this.handleChange(e);
+                      }}
+                    />
                   </Col>
                 </Form.Group>
 
@@ -147,8 +176,11 @@ class PackageModal extends Component {
                   <Col sm={9}>
                     <Form.Control
                       type="text"
-                      name="valid"
-                      placeholder="per menit"
+                      name="validUntil"
+                      placeholder="per day"
+                      onChange={e => {
+                        this.handleChange(e);
+                      }}
                     />
                   </Col>
                 </Form.Group>
@@ -157,7 +189,13 @@ class PackageModal extends Component {
                     Price
                   </Form.Label>
                   <Col sm={9}>
-                    <Form.Control type="text" name="price" />
+                    <Form.Control
+                      type="text"
+                      name="price"
+                      onChange={e => {
+                        this.handleChange(e);
+                      }}
+                    />
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formHorizontalPassword">
@@ -166,7 +204,14 @@ class PackageModal extends Component {
                   </Form.Label>
                   <Col sm={9}>
                     <Form.Group>
-                      <Form.Control as="textarea" name="description" rows="3" />
+                      <Form.Control
+                        as="textarea"
+                        name="description"
+                        rows="3"
+                        onChange={e => {
+                          this.handleChange(e);
+                        }}
+                      />
                     </Form.Group>
                   </Col>
                 </Form.Group>
@@ -180,6 +225,9 @@ class PackageModal extends Component {
                         as="textarea"
                         name="termsCondition"
                         rows="3"
+                        onChange={e => {
+                          this.handleChange(e);
+                        }}
                       />
                     </Form.Group>
                   </Col>
@@ -190,24 +238,42 @@ class PackageModal extends Component {
                   </Form.Label>
                   <Col sm={7}>
                     <InputGroup style={{ marginBottom: "20px" }}>
-                      {/* <Form.Control
-                        type="text"
-                        name="package"
-                        placeholder="Kuota Internet / Pulsa"
-                        aria-describedby="inputGroupPrepend"
-                        required
-                      /> */}
-
-                      <Form.Control as="select" name="package">
+                      <Form.Control
+                        as="select"
+                        name="packageItems"
+                        onChange={e => {
+                          this.handleArrayPush(e);
+                        }}
+                        // onChange={() => {
+                        //   console.log("masok");
+                        // }}
+                      >
                         <option selected disabled>
-                          Pilih Package Item
+                          Chose Package Item
                         </option>
-                        <option>aaa</option>
-                        <option>aaa</option>
-                      </Form.Control>
+                        {this.props.myPackageItem.length > 0 ? (
+                          <Fragment>
+                            {this.props.myPackageItem.map((item, index) => (
+                              <Fragment>
+                                {/* {console.log("aa ", item.id)} */}
+                                <option
+                                  key={index}
+                                  id={item.id}
+                                  value={item.id}
 
+                                  // onChange={() => {
+                                  //   console.log("masok");
+                                  // }}
+                                >
+                                  {item.name}
+                                </option>
+                              </Fragment>
+                            ))}
+                          </Fragment>
+                        ) : null}
+                      </Form.Control>
                       <Form.Control.Feedback type="invalid">
-                        Please add new data.
+                        Please add data in package Item page.
                       </Form.Control.Feedback>
                     </InputGroup>
 
@@ -242,33 +308,81 @@ class PackageModal extends Component {
                   </Form.Label>
                   <Col sm={9}>
                     <Form.Group>
-                      <Form.Control as="select" name="category">
-                        <option selected disabled>
-                          Pilih category
-                        </option>
-                        <option>aaa</option>
-                        <option>aaa</option>
+                      <Form.Control
+                        as="select"
+                        name="category"
+                        onChange={async e => {
+                          this.handleChange(e);
+                          await this.props.dispatch(
+                            getSubCategory(e.target.value)
+                          );
+
+                          this.setState({
+                            subCategory: this.props.mySubCategory
+                              .subCategoryList
+                          });
+                          console.log(
+                            "state sub category = ",
+                            this.state.subCategory
+                          );
+                        }}
+                      >
+                        {this.props.myCategory.length > 0 ? (
+                          <Fragment>
+                            <option selected disabled>
+                              Pilih category
+                            </option>
+                            {this.props.myCategory.map(item => (
+                              <option
+                                value={item.id}
+                                onClick={() => {
+                                  // awowo
+                                  this.handleSubCategory(item.id);
+                                }}
+                              >
+                                {item.name}
+                              </option>
+                            ))}
+                          </Fragment>
+                        ) : null}
                       </Form.Control>
                     </Form.Group>
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formHorizontalPassword">
                   <Form.Label column sm={3}>
-                    Sub-Category
+                    Sub Category
                   </Form.Label>
                   <Col sm={9}>
                     <Form.Group>
-                      <Form.Control as="select" name="subcategory">
-                        <option selected disabled>
-                          Pilih sub category
-                        </option>
-                        <option>aaa</option>
-                        <option>aaa</option>
+                      <Form.Control
+                        as="select"
+                        name="subcategory"
+                        onChange={e => {
+                          this.handleChange(e);
+                        }}
+                      >
+                        {mySubCategory.length > 0 ? (
+                          <Fragment>
+                            <option selected disabled>
+                              Pilih Sub - category
+                            </option>
+                            {mySubCategory.map(item => (
+                              <option
+                                value={item.id}
+                                onClick={() => {
+                                  this.handleSubCategory(item.id);
+                                }}
+                              >
+                                {item.name}
+                              </option>
+                            ))}
+                          </Fragment>
+                        ) : null}
                       </Form.Control>
                     </Form.Group>
                   </Col>
                 </Form.Group>
-
                 <Form.Group as={Row} className="pull-right">
                   <Col sm={12}>
                     <Button type="submit" variant="success">
@@ -285,4 +399,13 @@ class PackageModal extends Component {
   }
 }
 
-export default PackageModal;
+const mapStateToProps = state => {
+  // console.log(state);
+  return {
+    isLoading: state.myPackage.isLoading,
+    myPackage: state.myPackage,
+    mySubCategory: state.myCategory
+  };
+};
+
+export default connect(mapStateToProps)(PackageModal);

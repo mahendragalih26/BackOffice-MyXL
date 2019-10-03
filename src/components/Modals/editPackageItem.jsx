@@ -42,41 +42,6 @@ class PackageModal extends Component {
     );
   };
 
-  handleLoadMore = () => {
-    // this.state.loadMore.push("aa");
-    let tmp = this.state.loadMore;
-    tmp.push("dummyvar");
-    this.setState({ loadMore: tmp });
-  };
-
-  deleteLoadMore = () => {
-    // this.state.loadMore.push("aa");
-    let tmp = this.state.loadMore;
-    tmp.pop();
-    this.setState({ loadMore: tmp });
-  };
-
-  handleComponent = () => {
-    return (
-      <InputGroup style={{ marginBottom: "20px" }}>
-        <Form.Control
-          type="text"
-          placeholder="new Package.."
-          aria-describedby="inputGroupPrepend"
-          required
-        />
-        <InputGroup.Prepend></InputGroup.Prepend>
-        <Form.Control.Feedback type="invalid">
-          Please add new data.
-        </Form.Control.Feedback>
-      </InputGroup>
-    );
-  };
-
-  componentDidUpdate = () => {
-    this.handleComponent();
-  };
-
   handleAdd = async e => {
     e.preventDefault();
     // console.log("handle add package item = ", this.state.formPackage);
@@ -102,7 +67,7 @@ class PackageModal extends Component {
   };
 
   render() {
-    // console.log("statenya = ", this.state.loadMore);
+    console.log("statenya = ", this.props.data);
     return (
       <Fragment>
         <Modal
@@ -112,7 +77,7 @@ class PackageModal extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Add Package Item
+              Edit Package Item
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -152,6 +117,7 @@ class PackageModal extends Component {
                       onChange={e => {
                         this.handleChange(e);
                       }}
+                      // defaultValue={this.props.data.name}
                     />
                   </Col>
                 </Form.Group>

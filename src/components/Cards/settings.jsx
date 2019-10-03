@@ -43,7 +43,7 @@ class mySettings extends Component {
           </Form>
         </Navbar>
 
-        <NavbarTop />
+        <NavbarTop handleChange={this.props.handleChange} />
         <SlidingPane
           className="some-custom-class"
           overlayClassName="some-custom-overlay-class"

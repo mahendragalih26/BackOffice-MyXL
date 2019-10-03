@@ -17,6 +17,7 @@ const myHeader = props => {
         bg="light"
         variant="danger"
         style={{ paddingLeft: "35px", paddingBottom: "10px" }}
+        sticky="top"
       >
         <Navbar.Brand href="/main">
           <Image
@@ -26,40 +27,47 @@ const myHeader = props => {
         </Navbar.Brand>
         <Nav className="mr-auto" style={{ marginLeft: "30px" }}>
           <NavDropdown
-            title="Package / History"
+            title="Package & History"
             id="collasible-nav-dropdown"
             style={{ marginRight: "20px", fontWeight: "bold" }}
           >
-            <NavDropdown.Item href="/main">
-              Transaction with History
+            <NavDropdown.Item href="/main" style={{ fontSize: "20px" }}>
+              <i className="fa fa-line-chart" />
+              &nbsp; History Transaction
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/package">Package</NavDropdown.Item>
-            <NavDropdown.Item href="/package-item">
-              Package Item
+            <NavDropdown.Item href="/package" style={{ fontSize: "20px" }}>
+              <i className="fa fa-th-large" />
+              &nbsp; Package
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/package-item" style={{ fontSize: "20px" }}>
+              <i className="fa fa-th" />
+              &nbsp; Package Item
             </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title="Manage Balance"
             id="collasible-nav-dropdown"
-            style={{ marginRight: "20px", fontWeight: "bold" }}
+            style={{
+              marginRight: "20px",
+              fontWeight: "bold"
+            }}
           >
-            <NavDropdown.Item href="/balance">Add Balance</NavDropdown.Item>
+            <NavDropdown.Item href="/balance" style={{ fontSize: "20px" }}>
+              <i className="fa fa-money" />
+              &nbsp; Add Balance
+            </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title="Category"
             id="collasible-nav-dropdown"
             style={{ marginRight: "20px", fontWeight: "bold" }}
           >
-            <NavDropdown.Item href="/category">Main Category</NavDropdown.Item>
-            <NavDropdown.Item href="/category">Sub Category</NavDropdown.Item>
+            <NavDropdown.Item href="/category" style={{ fontSize: "20px" }}>
+              <i className="fa fa-code-fork" />
+              &nbsp;Category
+            </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="#features" style={{ marginRight: "20px" }}>
-            Features
-          </Nav.Link>
-          <Nav.Link href="#pricing" style={{ marginRight: "20px" }}>
-            Pricing
-          </Nav.Link>
         </Nav>
         <Form inline>
           <FormControl
@@ -67,6 +75,7 @@ const myHeader = props => {
             name="search"
             placeholder="Search"
             className="mr-sm-2"
+            onChange={e => props.handleChange(e)}
           />
           <Button variant="outline-primary">Search</Button>
         </Form>

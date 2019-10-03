@@ -7,11 +7,21 @@ import {
   Form,
   FormControl
 } from "react-bootstrap";
+
 import PackageItemAdd from "../Modals/addPackageItem.jsx";
+import BalanceEdit from "../Modals/editPackageItem.jsx";
 
 const PackageList = props => {
   const [modalShow, setModalShow] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
+  const [modalVal, setVal] = useState();
   let myItem = props.myItem;
+
+  const handler = item => {
+    setVal(item);
+    setModalEdit(true);
+  };
+
   return (
     <Fragment>
       {console.log("ini props = ", myItem)}
@@ -52,7 +62,7 @@ const PackageList = props => {
             {myItem.length > 0 ? (
               <Fragment>
                 {myItem.map(item => (
-                  <tr>
+                  <tr key={item.id}>
                     <td>{item.id}</td>
                     <td>{item.type}</td>
                     <td>{item.name}</td>
@@ -60,20 +70,21 @@ const PackageList = props => {
                     <td>
                       <Button
                         variant="primary"
-                        // onClick={() => setModalEditShow(true)}
+                        onClick={() => handler(item)}
                         style={{ color: "white" }}
                       >
                         <i className="fa fa-pencil" />
                         &nbsp; Edit
                       </Button>
-                      {/* <BalanceEdit
-                        show={modalEditShow}
-                        onHide={() => setModalEditShow(false)}
-                      /> */}
+                      <BalanceEdit
+                        data={modalVal}
+                        show={modalEdit}
+                        onHide={() => setModalEdit(false)}
+                      />
                       &nbsp;
                       <Button
                         variant="danger"
-                        // onClick={() => setModalDeleteShow(true)}
+                        onClick={() => props.handleDelete()}
                       >
                         <i className="fa fa-trash" />
                         &nbsp; Delete

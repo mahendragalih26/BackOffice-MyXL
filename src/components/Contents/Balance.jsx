@@ -5,9 +5,7 @@ import {
   Button,
   ButtonToolbar,
   Form,
-  Col,
-  Row,
-  InputGroup
+  Row
 } from "react-bootstrap";
 
 import BalanceAdd from "../Modals/addBalance.jsx";
@@ -16,7 +14,8 @@ import BalanceEdit from "../Modals/editBalance";
 const BalanceList = ({ userData }) => {
   const [modalShow, setModalShow] = useState(false);
   const [modalEditShow, setModalEditShow] = useState(false);
-  const [modalDeleteShow, setModalDeleteShow] = useState(false);
+  const [numberShow, setNumber] = useState();
+  // const [modalDeleteShow, setModalDeleteShow] = useState(false);
   return (
     <Fragment>
       {console.log("ini props = ", { userData })}
@@ -25,29 +24,6 @@ const BalanceList = ({ userData }) => {
         <div>
           <Form>
             <Form.Group as={Row} controlId="">
-              {/* <Col sm={4} style={{ paddingTop: "12px" }}>
-                <InputGroup>
-                  <Form.Control
-                    type="text"
-                    placeholder="Username"
-                    aria-describedby="inputGroupPrepend"
-                    className="pull-right"
-                    required
-                  />
-                </InputGroup>
-              </Col>
-              <Col sm={5} style={{ paddingTop: "12px" }}>
-                <InputGroup>
-                  <Form.Control
-                    type="text"
-                    placeholder="Username"
-                    aria-describedby="inputGroupPrepend"
-                    required
-                    className="pull-right"
-                  />
-                </InputGroup>
-              </Col>
-              <Col sm={3}> */}
               <ButtonToolbar className="pull-right" style={{ margin: "10px" }}>
                 <Button variant="success" onClick={() => setModalShow(true)}>
                   Add New Balance
@@ -92,25 +68,20 @@ const BalanceList = ({ userData }) => {
                     <td>
                       <Button
                         variant="primary"
-                        onClick={() => setModalEditShow(true)}
+                        onClick={() => {
+                          setNumber(item.number);
+                          setModalEditShow(true);
+                        }}
                         style={{ color: "white" }}
                       >
                         <i className="fa fa-plus" />
                         &nbsp; Add Balance
                       </Button>
                       <BalanceEdit
-                        number={item.number}
+                        number={numberShow}
                         show={modalEditShow}
                         onHide={() => setModalEditShow(false)}
                       />
-                      &nbsp;
-                      <Button
-                        variant="danger"
-                        onClick={() => setModalDeleteShow(true)}
-                      >
-                        <i className="fa fa-trash" />
-                        &nbsp; Delete
-                      </Button>
                     </td>
                   </tr>
                 ))}

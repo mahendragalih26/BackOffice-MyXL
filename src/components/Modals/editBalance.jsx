@@ -9,18 +9,22 @@ import {
   InputGroup
 } from "react-bootstrap";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 
 import { addUserBalance } from "../../Publics/Actions/balance";
+
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger"
+  },
+  buttonsStyling: false
+});
 
 class editModalBalance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // formPackage: {
-      //   number: "",
-      //   email: "",
-      //   password: ""
-      // },
       number: "",
       amount: "",
       loadMore: []
@@ -34,21 +38,39 @@ class editModalBalance extends Component {
     });
   };
 
-  componentDidMount = () => {
-    this.setState({
-      number: this.props.number
-    });
-  };
-
-  handleAdd = async e => {
+  handleAdd = e => {
     e.preventDefault();
-    await this.props.dispatch(
-      addUserBalance(this.state.number, this.state.amount)
-    );
+    Swal.fire({
+      title: "Anda Yakin Ingin?",
+      text: " menambah balance!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Add Balance!"
+    }).then(result => {
+      if (result.value) {
+        // e.preventDefault();
+
+        this.props.dispatch(
+          addUserBalance(this.props.number, this.state.amount)
+        );
+        Swal.fire("Succes!", "Top Up Balance Berhasil.").then(() =>
+          window.location.reload()
+        );
+      }
+    });
+    // .then(() => {
+    //   window.location.reload();
+    // });
+    // })
+    // .catch(err => {
+    //   alert(err);
+    // });
   };
 
   render() {
-    console.log("statenya = ", this.state.number);
+    console.log("th = ", this.props.number);
     console.log("propsnya = ", this.props);
     return (
       <Fragment>
@@ -64,7 +86,7 @@ class editModalBalance extends Component {
           </Modal.Header>
           <Modal.Body>
             <Container>
-              <Form onSubmit={this.handleAdd}>
+              <Form>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                   <Form.Label column sm={2}>
                     User Number
@@ -103,7 +125,11 @@ class editModalBalance extends Component {
                 </Form.Group>
 
                 <Form.Group as={Row} className="pull-right">
-                  <Button type="submit" variant="success">
+                  <Button
+                    type="submit"
+                    variant="success"
+                    onClick={this.handleAdd}
+                  >
                     Submit New Package
                   </Button>
                 </Form.Group>

@@ -6,19 +6,41 @@ import {
   ButtonToolbar,
   Badge,
   OverlayTrigger,
-  Tooltip
+  Tooltip,
+  Breadcrumb
 } from "react-bootstrap";
-import PackageAdd from "../Modals/addPackage.jsx";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 
 import { deletePackage } from "../../Publics/Actions/package";
 
+import PackageAdd from "../Modals/addPackage.jsx";
+import PackageEdit from "../Modals/editPackage.jsx";
+
 const PackageList = props => {
   const [modalShow, setModalShow] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
   const deleteHandler = async id => {
-    await props.dispatch(deletePackage(id)).then(() => {
-      window.location.reload();
+    Swal.fire({
+      title: "Anda Yakin Ingin?",
+      text: " Delete Paket ini !",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete Paket!"
+    }).then(result => {
+      if (result.value) {
+        // e.preventDefault();
+        props.dispatch(deletePackage(id));
+        Swal.fire("Succes!", "Delete Paket Berhasil.").then(() =>
+          window.location.reload()
+        );
+      }
     });
+    // await props.dispatch(deletePackage(id)).then(() => {
+    //   window.location.reload();
+    // });
   };
   let { myPackage } = props;
   let { myPackageItem } = props;
@@ -27,6 +49,12 @@ const PackageList = props => {
     <Fragment>
       <Container style={{ marginTop: "30px" }}>
         <h2>Dashboard Package</h2>
+        <Breadcrumb>
+          <Breadcrumb.Item href="/main" style={{ textDecoration: "none" }}>
+            Dashboard
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>Package</Breadcrumb.Item>
+        </Breadcrumb>
         <div>
           <ButtonToolbar className="pull-right" style={{ margin: "10px" }}>
             <Button variant="success" onClick={() => setModalShow(true)}>
@@ -47,8 +75,6 @@ const PackageList = props => {
               <th>Nama Package</th>
               <th>Valid Until</th>
               <th>Price</th>
-              {/* <th>description</th> */}
-              {/* <th>term Condition</th> */}
               <th>Category</th>
               <th>SubCategory</th>
               <th>Package Item</th>
@@ -73,8 +99,6 @@ const PackageList = props => {
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                       </b>
                     </td>
-                    {/* <td>{item.description}</td> */}
-                    {/* <td>{item.termsCondition}</td> */}
                     <td>{item.category}</td>
                     <td>{item.subcategory}</td>
                     <td>
@@ -118,7 +142,7 @@ const PackageList = props => {
                     <td>{item.categoryName}</td>
                     <td>{item.subcategoryName}</td>
                     <td>
-                      <OverlayTrigger
+                      {/* <OverlayTrigger
                         key="top"
                         placement="top"
                         overlay={
@@ -127,16 +151,12 @@ const PackageList = props => {
                       >
                         <Button
                           variant="primary"
-                          // onClick={() => setModalEditShow(true)}
+                          onClick={() => setModalEdit(true)}
                           style={{ color: "white" }}
                         >
                           <i className="fa fa-pencil" />
                         </Button>
-                      </OverlayTrigger>
-                      {/* <BalanceEdit
-                        show={modalEditShow}
-                        onHide={() => setModalEditShow(false)}
-                      /> */}
+                      </OverlayTrigger> */}
                       &nbsp;
                       <OverlayTrigger
                         key="top"
@@ -152,6 +172,12 @@ const PackageList = props => {
                           <i className="fa fa-trash" />
                         </Button>
                       </OverlayTrigger>
+                      <PackageEdit
+                        myPackageItem={myPackageItem}
+                        myCategory={myCategory}
+                        show={modalEdit}
+                        onHide={() => setModalEdit(false)}
+                      />
                     </td>
                   </tr>
                 ))}

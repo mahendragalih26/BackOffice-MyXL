@@ -12,7 +12,8 @@ class myChart extends Component {
     super(props);
 
     this.state = {
-      // transactionData: "",
+      transactionData: "",
+      type: "",
       optionsMixedChart: {
         chart: {
           id: "basic-bar",
@@ -153,16 +154,16 @@ class myChart extends Component {
     };
   }
 
-  // componentDidMount = async () => {
-  //   await this.props.dispatch(getTransaction()).then(() => {
-  //     this.setState({
-  //       transactionData: this.props.transaction.transactionList
-  //     });
-  //   });
-  // };
+  componentDidMount = () => {
+    this.setState({});
+  };
 
   render() {
     console.log("data transaction", this.props.dataTransaction);
+    // const { type, transactionData } = this.state;
+    // const filteredPackages = transactionData.filter(item =>
+    //   item.number.toLowerCase().includes(type.toLowerCase())
+    // );
     return (
       <Container style={{ backgroundColor: "#f5f5f5" }}>
         <div className="row-chart">

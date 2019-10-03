@@ -26,19 +26,19 @@ const BalanceList = props => {
         <div>
           <Form>
             <Form.Group as={Row} controlId="">
-              <Col sm={4} style={{ paddingTop: "12px" }}>
+              <Col sm={3} style={{ paddingTop: "12px" }}>
                 <InputGroup>
                   <Form.Control
                     type="text"
-                    placeholder="Username"
+                    placeholder="Search local data here.."
                     aria-describedby="inputGroupPrepend"
                     className="pull-right"
                     required
                   />
                 </InputGroup>
               </Col>
-              <Col sm={5} style={{ paddingTop: "12px" }}>
-                <InputGroup>
+              <Col sm={6} style={{ paddingTop: "12px" }}>
+                {/* <InputGroup>
                   <Form.Control
                     type="text"
                     placeholder="Username"
@@ -46,7 +46,7 @@ const BalanceList = props => {
                     required
                     className="pull-right"
                   />
-                </InputGroup>
+                </InputGroup> */}
               </Col>
               <Col sm={3}>
                 <ButtonToolbar

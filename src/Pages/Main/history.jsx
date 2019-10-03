@@ -10,9 +10,19 @@ class myHistory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      transactionData: []
+      transactionData: [],
+      search: ""
     };
   }
+
+  handleChange = e => {
+    const value = e.target.value;
+    this.setState({
+      search: value
+      // search: target
+    });
+    console.log("ini searchnya = ", this.state.search);
+  };
 
   componentDidMount = async () => {
     await this.props.dispatch(getTransaction()).then(() => {
@@ -22,10 +32,15 @@ class myHistory extends Component {
     });
   };
   render() {
+    const { search, transactionData } = this.state;
+    const filteredPackages = transactionData.filter(item =>
+      item.number.toLowerCase().includes(search.toLowerCase())
+    );
+    console.log("my search", this.state.search);
     return (
       <Fragment>
-        <Profile />
-        <ContentHistory transactionData={this.state.transactionData} />
+        <Profile handleChange={this.handleChange} />
+        <ContentHistory transactionData={filteredPackages} />
       </Fragment>
     );
   }

@@ -21,7 +21,7 @@ const HistoryList = props => {
         <h2>Dashboard History</h2>
         <Breadcrumb>
           <Breadcrumb.Item active>Dashboard</Breadcrumb.Item>
-          <Breadcrumb.Item href="/main">History</Breadcrumb.Item>
+          <Breadcrumb.Item active>History</Breadcrumb.Item>
         </Breadcrumb>
         <Charts dataTransaction={props.transactionData} />
         <div>
@@ -53,7 +53,7 @@ const HistoryList = props => {
         </div>
       </Container>
       <Container style={{ marginTop: "20px" }}>
-        <Table>
+        <Table striped bordered hover size="sm">
           <thead striped>
             <tr>
               <th>Number Phone</th>

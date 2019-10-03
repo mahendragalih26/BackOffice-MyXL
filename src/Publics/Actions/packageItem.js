@@ -3,7 +3,7 @@ import Axios from "axios";
 export const addPackageItem = data => {
   console.log(process.env.REACT_APP_HOST);
   return {
-    type: "GET_PACKAGE_ITEMS",
+    type: "ADD_PACKAGE_ITEMS",
     payload: Axios.post(`${process.env.REACT_APP_HOST}/api/packageitems/`, data)
   };
 };
@@ -19,7 +19,17 @@ export const getPackageItem = () => {
 export const getPackageItemId = id => {
   console.log(process.env.REACT_APP_HOST);
   return {
-    type: "GET_PACKAGE_ITEMSID",
+    type: "GET_PACKAGE_ITEMS_ID",
     payload: Axios.patch(`${process.env.REACT_APP_HOST}/api/packageitems/${id}`)
+  };
+};
+
+export const deletePackageItem = id => {
+  console.log(process.env.REACT_APP_HOST);
+  return {
+    type: "DELETE_PACKAGE",
+    payload: Axios.delete(
+      `${process.env.REACT_APP_HOST}/api/packageitems/${id}`
+    )
   };
 };
