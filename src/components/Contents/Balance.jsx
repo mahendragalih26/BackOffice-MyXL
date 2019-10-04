@@ -77,11 +77,6 @@ const BalanceList = ({ userData }) => {
                         <i className="fa fa-plus" />
                         &nbsp; Add Balance
                       </Button>
-                      <BalanceEdit
-                        number={numberShow}
-                        show={modalEditShow}
-                        onHide={() => setModalEditShow(false)}
-                      />
                     </td>
                   </tr>
                 ))}
@@ -89,6 +84,11 @@ const BalanceList = ({ userData }) => {
             ) : null}
           </tbody>
         </Table>
+        <BalanceEdit
+          number={numberShow}
+          show={modalEditShow}
+          onHide={() => setModalEditShow(false)}
+        />
       </Container>
     </Fragment>
   );

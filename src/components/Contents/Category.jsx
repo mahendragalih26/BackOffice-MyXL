@@ -71,7 +71,7 @@ const BalanceList = props => {
               <th>Category ID</th>
               <th>Category Name</th>
               <th>Sub Category</th>
-              <th>Action</th>
+              {/* <th>Action</th> */}
             </tr>
           </thead>
           <tbody>
@@ -92,7 +92,7 @@ const BalanceList = props => {
                         ))}
                       </Fragment>
                     </td>
-                    <td>
+                    {/* <td>
                       <Button
                         variant="primary"
                         // onClick={() => setModalEditShow(true)}
@@ -101,19 +101,14 @@ const BalanceList = props => {
                         <i className="fa fa-pencil" />
                         &nbsp; Edit
                       </Button>
-                      {/* <BalanceEdit
-                        show={modalEditShow}
-                        onHide={() => setModalEditShow(false)}
-                      /> */}
                       &nbsp;
                       <Button
                         variant="danger"
-                        // onClick={() => setModalDeleteShow(true)}
                       >
                         <i className="fa fa-trash" />
                         &nbsp; Delete
                       </Button>
-                    </td>
+                    </td> */}
                   </tr>
                 ))}
               </Fragment>

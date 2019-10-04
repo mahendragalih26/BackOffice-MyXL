@@ -15,13 +15,19 @@ const PackageList = props => {
   const [modalShow, setModalShow] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
   const [modalVal, setVal] = useState();
+  const [modalVal1, setVal1] = useState();
+  const [modalVal2, setVal2] = useState();
+  const [modalVal3, setVal3] = useState();
   let myItem = props.myItem;
 
-  const handler = item => {
-    setVal(item);
+  const handler = (id, type, name, value) => {
+    setVal(id);
+    setVal1(type);
+    setVal2(name);
+    setVal3(value);
+    // console.log("ini item = ", modalVal);
     setModalEdit(true);
   };
-
   return (
     <Fragment>
       {console.log("ini props = ", myItem)}
@@ -68,19 +74,16 @@ const PackageList = props => {
                     <td>{item.name}</td>
                     <td>{item.value}</td>
                     <td>
-                      <Button
+                      {/* <Button
                         variant="primary"
-                        onClick={() => handler(item)}
+                        onClick={() =>
+                          handler(item.id, item.type, item.name, item.value)
+                        }
                         style={{ color: "white" }}
                       >
                         <i className="fa fa-pencil" />
                         &nbsp; Edit
-                      </Button>
-                      <BalanceEdit
-                        data={modalVal}
-                        show={modalEdit}
-                        onHide={() => setModalEdit(false)}
-                      />
+                      </Button> */}
                       &nbsp;
                       <Button
                         variant="danger"
@@ -96,6 +99,15 @@ const PackageList = props => {
             ) : null}
           </tbody>
         </Table>
+
+        <BalanceEdit
+          data={modalVal}
+          data1={modalVal1}
+          data2={modalVal2}
+          data3={modalVal3}
+          show={modalEdit}
+          onHide={() => setModalEdit(false)}
+        />
       </Container>
     </Fragment>
   );

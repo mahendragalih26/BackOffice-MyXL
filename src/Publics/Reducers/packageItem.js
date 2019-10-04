@@ -92,6 +92,26 @@ const packageItem = (state = initialState, action) => {
         isFulfilled: true,
         packagesItemList: action.payload.data.response
       };
+    case "EDIT_PACKAGE_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isFulfilled: false,
+        isRejected: false
+      };
+    case "EDIT_PACKAGE_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isRejected: true
+      };
+    case "EDIT_PACKAGE_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isFulfilled: true,
+        packagesItemList: action.payload.data.response
+      };
     default:
       return state;
   }

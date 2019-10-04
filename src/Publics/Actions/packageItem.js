@@ -8,6 +8,17 @@ export const addPackageItem = data => {
   };
 };
 
+export const editPackageItem = (id, data) => {
+  console.log(process.env.REACT_APP_HOST);
+  return {
+    type: "ADD_PACKAGE_ITEMS",
+    payload: Axios.patch(
+      `${process.env.REACT_APP_HOST}/api/packageitems/${id}`,
+      data
+    )
+  };
+};
+
 export const getPackageItem = () => {
   console.log(process.env.REACT_APP_HOST);
   return {

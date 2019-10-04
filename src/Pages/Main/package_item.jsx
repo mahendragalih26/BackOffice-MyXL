@@ -61,7 +61,15 @@ class myMain extends Component {
     if (this.props.isLoading) {
       return (
         <Fragment>
-          <Spinner animation="grow" />
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%"
+            }}
+          >
+            <Spinner animation="grow" variant="primary" />
+          </div>
         </Fragment>
       );
     } else {
