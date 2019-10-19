@@ -16,7 +16,7 @@ const myHeader = props => {
       <Navbar
         bg="light"
         variant="danger"
-        style={{ paddingLeft: "35px", paddingBottom: "10px" }}
+        style={{ paddingLeft: "35px", paddingBottom: "10px", zIndex: 20 }}
         sticky="top"
       >
         <Navbar.Brand href="/main">

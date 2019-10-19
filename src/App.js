@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import store from "./Publics/store";
 
@@ -35,7 +36,15 @@ function App() {
             render={props => {
               return (
                 <Fragment>
-                  <Main />
+                  {localStorage.getItem("token") !== null ? (
+                    <Main />
+                  ) : (
+                    <Redirect
+                      to={{
+                        pathname: "/"
+                      }}
+                    />
+                  )}
                 </Fragment>
               );
             }}
@@ -46,7 +55,15 @@ function App() {
             render={props => {
               return (
                 <Fragment>
-                  <PackageItem />
+                  {localStorage.getItem("token") !== null ? (
+                    <PackageItem />
+                  ) : (
+                    <Redirect
+                      to={{
+                        pathname: "/"
+                      }}
+                    />
+                  )}
                 </Fragment>
               );
             }}
@@ -57,7 +74,15 @@ function App() {
             render={props => {
               return (
                 <Fragment>
-                  <MainBalance />
+                  {localStorage.getItem("token") !== null ? (
+                    <MainBalance />
+                  ) : (
+                    <Redirect
+                      to={{
+                        pathname: "/"
+                      }}
+                    />
+                  )}
                 </Fragment>
               );
             }}
@@ -68,7 +93,15 @@ function App() {
             render={props => {
               return (
                 <Fragment>
-                  <MainHistory />
+                  {localStorage.getItem("token") !== null ? (
+                    <MainHistory />
+                  ) : (
+                    <Redirect
+                      to={{
+                        pathname: "/"
+                      }}
+                    />
+                  )}
                 </Fragment>
               );
             }}
@@ -79,7 +112,15 @@ function App() {
             render={props => {
               return (
                 <Fragment>
-                  <Category />
+                  {localStorage.getItem("token") !== null ? (
+                    <Category />
+                  ) : (
+                    <Redirect
+                      to={{
+                        pathname: "/"
+                      }}
+                    />
+                  )}
                 </Fragment>
               );
             }}
@@ -90,7 +131,15 @@ function App() {
             render={props => {
               return (
                 <Fragment>
-                  <TryChart />
+                  {localStorage.getItem("token") !== null ? (
+                    <TryChart />
+                  ) : (
+                    <Redirect
+                      to={{
+                        pathname: "/"
+                      }}
+                    />
+                  )}
                 </Fragment>
               );
             }}
