@@ -26,34 +26,20 @@ Indonesia's prominent telecommunication provider through services for retail cus
 ## Screenshot
   <p align="center">
     <span>
-      <img src="https://user-images.githubusercontent.com/35838970/67635802-125cd980-f8fd-11e9-96e9-603f3d725900.PNG" width="250px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635840-53ed8480-f8fd-11e9-8a87-7e605203a237.PNG" width="600px" />
       &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/52324743/67176350-e076df00-f3f3-11e9-9556-9df88d22dbc7.png" width="250px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635866-8e572180-f8fd-11e9-872e-b83e8e0e144d.PNG" width="600px" />
       &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/52324743/67176378-f97f9000-f3f3-11e9-8c33-7596b3156bc7.png" width="250px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635802-125cd980-f8fd-11e9-96e9-603f3d725900.PNG" width="600px" />
     </span>
   </p>
   <p align="center">
     <span>
-      <img src="https://user-images.githubusercontent.com/52324743/67176451-38154a80-f3f4-11e9-9e57-ed4e97bfd4d5.png" width="250px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635840-53ed8480-f8fd-11e9-8a87-7e605203a237.PNG" width="600px" />
       &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/52324743/67177707-e7a0eb80-f3f9-11e9-8f2a-0791090b548c.png" width="250px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635866-8e572180-f8fd-11e9-872e-b83e8e0e144d.PNG" width="600px" />
       &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/52324743/67177738-0d2df500-f3fa-11e9-89fb-5e161697e6ff.png" width="250px" />
-    </span>
-  </p>
-  <p align="center">
-    <span>
-      <img src="https://user-images.githubusercontent.com/52324743/67177933-f76cff80-f3fa-11e9-9b6a-13552ac68949.png" width="250px" />
-      &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/52324743/67177955-1bc8dc00-f3fb-11e9-834a-783f28f89931.png" width="250px" />
-      &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/52324743/67177980-2f744280-f3fb-11e9-9708-4ba8768445d2.png" width="250px" />
-    </span>
-  </p>
-  <p align="center">
-    <span>
-      <img src="https://user-images.githubusercontent.com/52324743/67178172-f5f00700-f3fb-11e9-9415-8d08dd9ffece.png" width="250px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635802-125cd980-f8fd-11e9-96e9-603f3d725900.PNG" width="600px" />
     </span>
   </p>
   
