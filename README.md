@@ -38,6 +38,13 @@ Indonesia's prominent telecommunication provider through services for retail cus
       <img src="https://user-images.githubusercontent.com/35838970/67636008-91064680-f8fe-11e9-9c0e-827a37556ff2.PNG" width="400px" />
     </span>
   </p>
+  <p align="center">
+    <span>
+      <img src="https://user-images.githubusercontent.com/35838970/67636033-cad74d00-f8fe-11e9-96e3-3c5aaaf994c6.PNG" width="400px" />
+      &nbsp;&nbsp;
+      <img src="https://user-images.githubusercontent.com/35838970/67636038-e4789480-f8fe-11e9-93c8-b4ce597afe7c.PNG" width="400px" />
+    </span>
+  </p>
   <br/>
 
 ## Contributors
