@@ -26,23 +26,18 @@ Indonesia's prominent telecommunication provider through services for retail cus
 ## Screenshot
   <p align="center">
     <span>
-      <img src="https://user-images.githubusercontent.com/35838970/67635840-53ed8480-f8fd-11e9-8a87-7e605203a237.PNG" width="600px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635840-53ed8480-f8fd-11e9-8a87-7e605203a237.PNG" width="400px" />
       &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/35838970/67635866-8e572180-f8fd-11e9-872e-b83e8e0e144d.PNG" width="600px" />
-      &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/35838970/67635802-125cd980-f8fd-11e9-96e9-603f3d725900.PNG" width="600px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635866-8e572180-f8fd-11e9-872e-b83e8e0e144d.PNG" width="400px" />
     </span>
   </p>
   <p align="center">
     <span>
-      <img src="https://user-images.githubusercontent.com/35838970/67635840-53ed8480-f8fd-11e9-8a87-7e605203a237.PNG" width="600px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635802-125cd980-f8fd-11e9-96e9-603f3d725900.PNG" width="400px" />
       &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/35838970/67635866-8e572180-f8fd-11e9-872e-b83e8e0e144d.PNG" width="600px" />
-      &nbsp;&nbsp;
-      <img src="https://user-images.githubusercontent.com/35838970/67635802-125cd980-f8fd-11e9-96e9-603f3d725900.PNG" width="600px" />
+      <img src="https://user-images.githubusercontent.com/35838970/67635866-8e572180-f8fd-11e9-872e-b83e8e0e144d.PNG" width="400px" />
     </span>
   </p>
-  
   <br/>
 
 ## Contributors
